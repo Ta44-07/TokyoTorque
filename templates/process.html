@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='process.css') }}">
+
+<section class="process-header">
+    <h2>The Import Process</h2>
+    <p class="process-subtitle">From Japanese auction to UK driveway — we handle everything</p>
+</section>
+
+<!-- Timeline/Steps -->
+<section class="process-timeline">
+
+    <!-- Step 1 -->
+    <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h3>Vehicle Sourcing</h3>
+            <p class="step-description">We search Japanese auctions, dealerships, and private sellers to find the exact model, grade, and specification you're looking for. You get full access to auction sheets and vehicle history reports.</p>
+            <div class="step-details">
+                <span class="detail-badge">📋 Japanese Auction Access</span>
+                <span class="detail-badge">🔍 Grade 4+ Only</span>
+                <span class="detail-badge">📄 Genuine Mileage Guarantee</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h3>Inspection & Compliance</h3>
+            <p class="step-description">Once secured, the vehicle undergoes rigorous inspection in Japan. We verify mechanical condition, chassis integrity, and interior quality before accepting the vehicle.</p>
+            <div class="step-details">
+                <span class="detail-badge">🔧 150-Point Check</span>
+                <span class="detail-badge">📸 Photo/Video Report</span>
+                <span class="detail-badge">✅ Japanese Export Inspection</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h3>Shipping & Logistics</h3>
+            <p class="step-description">We arrange RO-RO or container shipping from Japan to UK ports (Southampton, Bristol, or Liverpool). Full marine insurance and real-time tracking provided throughout transit.</p>
+            <div class="step-details">
+                <span class="detail-badge">🚢 4-6 Week Transit</span>
+                <span class="detail-badge">📦 RO-RO or Container</span>
+                <span class="detail-badge">📍 Real-time Tracking</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <h3>UK Customs & Registration</h3>
+            <p class="step-description">We handle all UK import procedures: customs clearance, VAT, NOVA notification, IVA testing (if required), and first UK registration with DVLA. You receive a fresh UK V5C logbook.</p>
+            <div class="step-details">
+                <span class="detail-badge">📝 NOVA Submitted</span>
+                <span class="detail-badge">🇬🇧 IVA Testing</span>
+                <span class="detail-badge">🪪 UK Registration</span>
+                <span class="detail-badge">🔢 Age-Related Plates</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="process-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+            <h3>Handover & Aftercare</h3>
+            <p class="step-description">The final step. We prepare your vehicle with UK MOT, fresh service, and valet. You collect your car from our UK facility or we can arrange UK-wide delivery. Full aftercare support included.</p>
+            <div class="step-details">
+                <span class="detail-badge">🧼 Full Valet</span>
+                <span class="detail-badge">🔧 Pre-Delivery Service</span>
+                <span class="detail-badge">🚛 UK Delivery Available</span>
+                <span class="detail-badge">📞 12-Month Support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Divider (Visual) -->
+<div class="timeline-connector"></div>
+
+<!-- Cost Breakdown Table -->
+<section class="cost-section">
+    <h2 class="section-title">Import Cost Breakdown</h2>
+    <p class="section-subtitle">Typical costs for importing a JDM vehicle to the UK</p>
+
+    <div class="cost-table-wrapper">
+        <table class="cost-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Cost (Estimate)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vehicle Purchase (Japan)</td>
+                    <td>£15,000 - £50,000+</td>
+                    <td>Auction price + fees</td>
+                </tr>
+                <tr>
+                    <td>Shipping & Insurance</td>
+                    <td>£1,500 - £2,500</td>
+                    <td>RO-RO or container</td>
+                </tr>
+                <tr>
+                    <td>Import Duty (10%)</td>
+                    <td>10% of vehicle value</td>
+                    <td>Based on purchase price</td>
+                </tr>
+                <tr>
+                    <td>VAT (20%)</td>
+                    <td>20% of total + duty</td>
+                    <td>Payable on import</td>
+                </tr>
+                <tr>
+                    <td>IVA Testing (if req)</td>
+                    <td>£200 - £500</td>
+                    <td>For vehicles under 10 years</td>
+                </tr>
+                <tr>
+                    <td>UK Registration</td>
+                    <td>£55</td>
+                    <td>DVLA fee</td>
+                </tr>
+                <tr>
+                    <td>TokyoTorque Service Fee</td>
+                    <td>£1,500</td>
+                    <td>Fixed fee, all-inclusive</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="table-note">
+                        * Exact costs depend on vehicle value, age, and shipping method. Contact us for a precise quote.
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-grid">
+        <div class="faq-item">
+            <h4>How long does the whole process take?</h4>
+            <p>Typically 8-12 weeks from auction win to UK delivery. Sourcing the right vehicle can take longer depending on rarity.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do you import cars older than 10 years?</h4>
+            <p>Yes! Vehicles over 10 years old don't require IVA testing, making the process simpler and cheaper.</p>
+        </div>
+        <div class="faq-item">
+            <h4>What Japanese auction access do you have?</h4>
+            <p>We have direct access to USS, TAA, and CAA auctions — Japan's largest wholesale marketplaces.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can you import any JDM car?</h4>
+            <p>We specialise in performance JDM vehicles but can import any Japanese domestic market car, including Kei cars, vans, and classic models.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do I need to visit Japan?</h4>
+            <p>Not at all. We handle everything remotely. You can view auction sheets, photos, and videos from your phone.</p>
+        </div>
+        <div class="faq-item">
+            <h4>What payment methods do you accept?</h4>
+            <p>Bank transfer (Faster Payments), GBP or JPY. We require a 20% deposit to secure a vehicle, balance on arrival.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="process-cta">
+    <h3>Ready to start your import?</h3>
+    <p>Get a free, no-obligation quote for your dream JDM car</p>
+    <a href="{{ url_for('contact') }}" class="btn-cta">Start Your Import</a>
+</section>
+{% endblock %}

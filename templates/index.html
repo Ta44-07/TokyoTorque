@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Import Your <span class="accent">Dream JDM</span> Car</h1>
+        <p class="hero-subtitle">Specialists in Japanese Domestic Market vehicle imports. Direct from Japan to the UK.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('stock') }}" class="btn btn-primary">View Stock</a>
+            <a href="{{ url_for('process') }}" class="btn btn-secondary">How It Works</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features / USP Section -->
+<section class="features">
+    <h2 class="section-title">Why Choose TokyoTorque?</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🇯🇵</div>
+            <h3>Direct From Japan</h3>
+            <p>We source vehicles directly from Japanese auctions with full transparency and auction sheets.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Grade 4.5+ Quality</h3>
+            <p>We only import high-grade vehicles with genuine mileage and comprehensive history.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Full UK Compliance</h3>
+            <p>We handle IVA testing, registration, and all UK paperwork. You just drive.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚛</div>
+            <h3>Door-to-Door Delivery</h3>
+            <p>From Osaka to your driveway. Fully insured shipping with real-time tracking.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Stock Preview -->
+<section class="featured-stock">
+    <div class="section-header">
+        <h2 class="section-title">Recently Arrived</h2>
+        <a href="{{ url_for('stock') }}" class="view-all-link">View All →</a>
+    </div>
+
+    <div class="preview-grid">
+        <!-- Nissan Skyline R34 -->
+        <div class="preview-card">
+            <div class="preview-image">
+                <img src="{{ url_for('static', filename='images/R34.png') }}" alt="Nissan Skyline R34 GT-R">
+                <span class="preview-tag">Fresh Import</span>
+            </div>
+
+            <div class="preview-details">
+                <h4>Nissan Skyline R34 GT-R</h4>
+                <div class="preview-price">£89,950</div>
+                <span class="preview-status">Available</span>
+            </div>
+        </div>
+
+        <!-- Mazda RX-7 -->
+        <div class="preview-card">
+            <div class="preview-image">
+                <span class="preview-tag">Featured</span>
+                <img src="{{ url_for('static', filename='images/RX7.png') }}" alt="RX7">
+            </div>
+            <div class="preview-details">
+                <h4>Mazda RX-7 FD AMEMIYA</h4>
+                <div class="preview-price">£42,500</div>
+                <span class="preview-status">Available</span>
+            </div>
+        </div>
+
+        <!-- Honda NSX -->
+        <div class="preview-card">
+            <div class="preview-image">
+                <span class="preview-tag">Just Landed</span>
+                <img src="{{ url_for('static', filename='images/NSX.png') }}" alt="NSX">
+            </div>
+            <div class="preview-details">
+                <h4>Honda NSX</h4>
+                <div class="preview-price">£67,800</div>
+                <span class="preview-status">Available</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial / Trust Badge -->
+<section class="trust-banner">
+    <div class="trust-content">
+        <h3>Over 50 JDM vehicles imported in 2025</h3>
+        <p>Trusted by enthusiasts across the UK. 5-star reviews on Trustpilot.</p>
+        <div class="trust-badges">
+            <span class="badge">✅ HMRC Registered</span>
+            <span class="badge">✅ FCA Authorised</span>
+            <span class="badge">✅ Japanese Auction Access</span>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+    <div class="cta-content">
+        <h3>Ready to find your JDM dream car?</h3>
+        <p>Get in touch for a free consultation and import quote.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">Start Your Import</a>
+    </div>
+</section>
+{% endblock %}

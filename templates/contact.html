@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+
+<section class="contact-header">
+    <h2>Contact Us</h2>
+    <p class="contact-subtitle">Ready to import your dream JDM car? Get in touch with our team</p>
+</section>
+
+<div class="contact-container">
+    <!-- Left Column - Contact Form -->
+    <div class="contact-form-wrapper">
+        <h3>Send an Enquiry</h3>
+
+        <form method="post" class="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="e.g. James Tanaka" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="james@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="07700 123456">
+            </div>
+
+            <div class="form-group">
+                <label for="interest">I'm interested in...</label>
+                <select id="interest" name="interest">
+                    <option value="" disabled selected>Select a vehicle</option>
+                    <option>Nissan Skyline R34 GT-R</option>
+                    <option>Mazda RX-7 FD3S</option>
+                    <option>Toyota Supra MK4</option>
+                    <option>Honda NSX</option>
+                    <option>Subaru Impreza 22B</option>
+                    <option>Mitsubishi Evo VI</option>
+                    <option>Other / Not listed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="budget">Budget Range</label>
+                <select id="budget" name="budget">
+                    <option value="" disabled selected>Select budget</option>
+                    <option>£20,000 - £30,000</option>
+                    <option>£30,000 - £50,000</option>
+                    <option>£50,000 - £75,000</option>
+                    <option>£75,000 - £100,000</option>
+                    <option>£100,000+</option>
+                    <option>Not sure / Flexible</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about the car you're looking for, your timeline, and any specific requirements..." required></textarea>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Keep me updated on new JDM stock and arrivals</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Enquiry</button>
+            <p class="form-note">This is a prototype — form submission is not functional</p>
+        </form>
+    </div>
+
+    <!-- Right Column - Contact Info / Map -->
+    <div class="contact-info-wrapper">
+        <div class="contact-card">
+            <h3>TokyoTorque Imports</h3>
+
+            <div class="info-block">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <h4>Visit Us</h4>
+                    <p>Unit 12, Silverstone Business Park<br>Towcester, Northamptonshire<br>NN12 8TN, United Kingdom</p>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                    <h4>Call Us</h4>
+                    <p>+44 (0)1327 123456<br>Mon-Fri: 9am - 5:30pm</p>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-icon">✉️</div>
+                <div class="info-text">
+                    <h4>Email</h4>
+                    <p>imports@tokyotorque.co.uk<br>sales@tokyotorque.co.uk</p>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-icon">⏰</div>
+                <div class="info-text">
+                    <h4>Opening Hours</h4>
+                    <p>Monday - Friday: 9:00 - 17:30<br>Saturday: 10:00 - 16:00<br>Sunday: Closed (viewings by appointment)</p>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">▶️</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="map-placeholder">
+            <div class="map-overlay">
+                <span class="map-icon">🗺️</span>
+                <p>Map preview<br><small>Silverstone, Northamptonshire</small></p>
+                <span class="map-badge">📍 View on Google Maps</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alternative Contact Methods -->
+<section class="alt-contact">
+    <h3>Other ways to connect</h3>
+    <div class="alt-grid">
+        <div class="alt-card">
+            <span class="alt-icon">💬</span>
+            <h4>WhatsApp</h4>
+            <p>+44 7700 123456</p>
+            <span class="alt-note">Quickest response</span>
+        </div>
+        <div class="alt-card">
+            <span class="alt-icon">📘</span>
+            <h4>Facebook</h4>
+            <p>/tokyotorqueimports</p>
+        </div>
+        <div class="alt-card">
+            <span class="alt-icon">📷</span>
+            <h4>Instagram</h4>
+            <p>@tokyotorque_uk</p>
+            <span class="alt-note">Daily JDM content</span>
+        </div>
+        <div class="alt-card">
+            <span class="alt-icon">▶️</span>
+            <h4>YouTube</h4>
+            <p>/TokyoTorqueImports</p>
+            <span class="alt-note">Walkarounds & reviews</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

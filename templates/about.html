@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="about-hero-content">
+        <h1>About <span class="accent">TokyoTorque</span></h1>
+        <p class="about-hero-subtitle">Bridging the gap between Japanese automotive excellence and UK enthusiasts</p>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="story-section">
+    <div class="story-container">
+        <div class="story-content">
+            <h2 class="section-title">Our Story</h2>
+            <p class="story-text">Founded in 2022 by lifelong JDM enthusiasts, TokyoTorque Imports was built on a simple belief: UK enthusiasts deserve access to the highest quality Japanese Domestic Market vehicles without the usual hassle, hidden fees, or uncertainty.</p>
+            <p class="story-text">What started as a passion project—importing a single R32 Skyline for a private collector—quickly grew into a full-service import business. Today, we've helped over 150 UK customers import their dream JDM cars, from classic Kei trucks to legendary GT-Rs and everything in between.</p>
+            <p class="story-text">We're not just importers; we're enthusiasts, drivers, and collectors. We understand the emotional connection to these machines because we feel it too.</p>
+        </div>
+        <div class="story-stats">
+            <div class="stat-card">
+                <span class="stat-number">150+</span>
+                <span class="stat-label">Cars Imported</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Customer Satisfaction</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Years Combined Experience</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Customer Support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Values -->
+<section class="values-section">
+    <h2 class="section-title">Our Mission & Values</h2>
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-icon">🔍</div>
+            <h3>Transparency</h3>
+            <p>Full auction sheets, independent inspection reports, and honest grading. No surprises, no hidden agendas.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">🇯🇵</div>
+            <h3>Japanese Integrity</h3>
+            <p>We operate with the same attention to detail and respect as our Japanese partners. Your car is handled with care at every stage.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h3>Performance Focus</h3>
+            <p>We specialise in enthusiast-grade vehicles. If it's not something we'd drive ourselves, we won't import it for you.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3>Lifetime Connection</h3>
+            <p>Our relationship doesn't end at handover. We're here for aftercare, advice, and when you're ready for your next import.</p>
+        </div>
+    </div>
+</section>
+
+<!-- The Team -->
+<section class="team-section">
+    <h2 class="section-title">Meet The Team</h2>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-image">
+                <span class="team-initials">MT</span>
+            </div>
+            <h3>Michael Tanaka</h3>
+            <p class="team-role">Founder & Head Importer</p>
+            <p class="team-bio">Former automotive journalist and 20-year JDM enthusiast. Michael has personally imported over 50 vehicles and visits Japanese auctions twice yearly.</p>
+            <div class="team-social">
+                <span class="team-social-icon">📘</span>
+                <span class="team-social-icon">📷</span>
+                <span class="team-social-icon">💼</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-image">
+                <span class="team-initials">JR</span>
+            </div>
+            <h3>James Robertson</h3>
+            <p class="team-role">Technical Director</p>
+            <p class="team-bio">Master technician specialising in Japanese performance vehicles. James oversees UK compliance, IVA testing, and pre-delivery inspections.</p>
+            <div class="team-social">
+                <span class="team-social-icon">📘</span>
+                <span class="team-social-icon">📷</span>
+                <span class="team-social-icon">🔧</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-image">
+                <span class="team-initials">SY</span>
+            </div>
+            <h3>Sarah Yamamoto</h3>
+            <p class="team-role">Japan Operations</p>
+            <p class="team-bio">Based in Yokohama, Sarah coordinates with auction houses, inspects vehicles personally, and manages shipping logistics.</p>
+            <div class="team-social">
+                <span class="team-social-icon">📘</span>
+                <span class="team-social-icon">📷</span>
+                <span class="team-social-icon">🇯🇵</span>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-image">
+                <span class="team-initials">DP</span>
+            </div>
+            <h3>David Patel</h3>
+            <p class="team-role">Customer Relations</p>
+            <p class="team-bio">Your main point of contact. David guides clients through every step, from vehicle selection to the moment you collect your keys.</p>
+            <div class="team-social">
+                <span class="team-social-icon">📘</span>
+                <span class="team-social-icon">📷</span>
+                <span class="team-social-icon">💬</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Us / Differentiators -->
+<section class="differentiators">
+    <div class="diff-container">
+        <h2 class="section-title">Why UK Enthusiasts Choose Us</h2>
+        <div class="diff-list">
+            <div class="diff-item">
+                <span class="diff-number">01</span>
+                <div class="diff-content">
+                    <h3>Direct Auction Access</h3>
+                    <p>We don't buy from middlemen. We source directly from USS, TAA, and CAA auctions with full transparency.</p>
+                </div>
+            </div>
+            <div class="diff-item">
+                <span class="diff-number">02</span>
+                <div class="diff-content">
+                    <h3>UK-Based, Not Offshore</h3>
+                    <p>We're physically located in Northamptonshire. You can visit us, see vehicles upon arrival, and collect in person.</p>
+                </div>
+            </div>
+            <div class="diff-item">
+                <span class="diff-number">03</span>
+                <div class="diff-content">
+                    <h3>No Hidden Fees</h3>
+                    <p>Our all-inclusive fee structure means you know exactly what you're paying from auction to driveway.</p>
+                </div>
+            </div>
+            <div class="diff-item">
+                <span class="diff-number">04</span>
+                <div class="diff-content">
+                    <h3>Enthusiast-Led</h3>
+                    <p>We're not a faceless corporation. We attend meets, drive JDM cars ourselves, and genuinely care about the scene.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners / Accreditation -->
+<section class="partners-section">
+    <h2 class="section-title">Trusted Partners</h2>
+    <div class="partners-grid">
+        <div class="partner-card">
+            <span class="partner-logo">USS</span>
+            <span class="partner-name">Japanese Auction Access</span>
+        </div>
+        <div class="partner-card">
+            <span class="partner-logo">JAPAN</span>
+            <span class="partner-name">JUMVEA Registered</span>
+        </div>
+        <div class="partner-card">
+            <span class="partner-logo">FCA</span>
+            <span class="partner-name">FCA Authorised</span>
+        </div>
+        <div class="partner-card">
+            <span class="partner-logo">DVLA</span>
+            <span class="partner-name">DVLA Registered</span>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+    <div class="cta-content">
+        <h3>Ready to start your JDM journey?</h3>
+        <p>Whether you know exactly what you want or need guidance, we're here to help.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('contact') }}" class="btn-primary">Contact Us</a>
+            <a href="{{ url_for('stock') }}" class="btn-secondary">Browse Stock</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

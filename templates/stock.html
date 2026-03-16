@@ -1,0 +1,1297 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stock.css') }}">
+
+<section class="stock-header">
+    <h2>Current Stock</h2>
+    <p class="stock-subtitle">Freshly imported JDM vehicles, ready for collection</p>
+</section>
+
+<!-- Search & Filter Bar -->
+<section class="stock-controls">
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by make, model, or year..." class="search-input">
+        <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="filter-bar">
+        <select id="makeFilter" class="filter-select">
+            <option value="all">All Makes</option>
+            <option value="nissan">Nissan</option>
+            <option value="toyota">Toyota</option>
+            <option value="mazda">Mazda</option>
+            <option value="honda">Honda</option>
+            <option value="subaru">Subaru</option>
+            <option value="mitsubishi">Mitsubishi</option>
+            <option value="lexus">Lexus</option>
+            <option value="suzuki">Suzuki</option>
+            <option value="daihatsu">Daihatsu</option>
+            <option value="isuzu">Isuzu</option>
+        </select>
+
+        <select id="priceFilter" class="filter-select">
+            <option value="all">All Prices</option>
+            <option value="0-20000">Under £20k</option>
+            <option value="20000-40000">£20k - £40k</option>
+            <option value="40000-60000">£40k - £60k</option>
+            <option value="60000-80000">£60k - £80k</option>
+            <option value="80000-100000">£80k - £100k</option>
+            <option value="100000+">£100k+</option>
+        </select>
+
+        <select id="yearFilter" class="filter-select">
+            <option value="all">All Years</option>
+            <option value="1990-1995">1990-1995</option>
+            <option value="1996-2000">1996-2000</option>
+            <option value="2001-2005">2001-2005</option>
+            <option value="2006-2010">2006-2010</option>
+            <option value="2011-2015">2011-2015</option>
+            <option value="2016-2025">2016-2025</option>
+        </select>
+
+        <select id="sortFilter" class="filter-select">
+            <option value="latest">Sort: Latest</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="year-new">Year: Newest</option>
+            <option value="year-old">Year: Oldest</option>
+        </select>
+    </div>
+
+    <div class="stock-count-wrapper">
+        <p class="stock-count">Showing <span id="carCount">24</span> of 24 vehicles</p>
+        <button id="resetFilters" class="reset-btn">Reset Filters</button>
+    </div>
+</section>
+
+<!-- Stock Grid -->
+<section class="stock-grid" id="stockGrid">
+    <!-- =============== LEGENDARY ICONS =============== -->
+    <div class="car-card" data-make="nissan" data-price="89950" data-year="1999" data-model="skyline">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/R34.png') }}" alt="Nissan Skyline R34 GT-R">
+            <span class="car-tag">Just Arrived</span>
+        </div>
+        <div class="car-details">
+            <h3>Nissan Skyline R34 GT-R</h3>
+            <div class="car-specs">
+                <span class="spec">1999</span>
+                <span class="spec">49,000 km</span>
+                <span class="spec">2.6L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£89,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="r34">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mazda" data-price="42500" data-year="1996" data-model="rx7">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/RX7.png') }}" alt="RX7">
+            <span class="car-tag featured">Featured</span>
+        </div>
+        <div class="car-details">
+            <h3>Mazda RX-7 FD3S</h3>
+            <div class="car-specs">
+                <span class="spec">1996</span>
+                <span class="spec">68,000 km</span>
+                <span class="spec">1.3L Twin-Rotor</span>
+            </div>
+            <div class="car-price">£42,500</div>
+            <div class="car-meta">
+                <span class="location">UK • Imported 2025</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="rx7">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="toyota" data-price="74995" data-year="1995" data-model="supra">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/MK4.png') }}" alt="supra mk4">
+            <span class="car-tag sold">SOLD</span>
+        </div>
+        <div class="car-details">
+            <h3>Toyota Supra MK4</h3>
+            <div class="car-specs">
+                <span class="spec">1995</span>
+                <span class="spec">82,000 km</span>
+                <span class="spec">3.0L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£74,995</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status sold">Sold</span>
+            </div>
+            <button class="enquire-btn" disabled>Sold</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="honda" data-price="67800" data-year="1992" data-model="nsx">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/NSX.png') }}" alt="NSX">
+            <span class="car-tag">Fresh Import</span>
+        </div>
+        <div class="car-details">
+            <h3>Honda NSX</h3>
+            <div class="car-specs">
+                <span class="spec">1992</span>
+                <span class="spec">55,000 km</span>
+                <span class="spec">3.0L V6</span>
+            </div>
+            <div class="car-price">£67,800</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="nsx">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="subaru" data-price="245000" data-year="1998" data-model="22b">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/2BB.png') }}" alt="22b sti">
+            <span class="car-tag featured">Rare</span>
+        </div>
+        <div class="car-details">
+            <h3>Subaru Impreza 22B STI</h3>
+            <div class="car-specs">
+                <span class="spec">1998</span>
+                <span class="spec">38,000 km</span>
+                <span class="spec">2.2L Turbo</span>
+            </div>
+            <div class="car-price">£245,000</div>
+            <div class="car-meta">
+                <span class="location">Japan • No. 278/400</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="22b">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mitsubishi" data-price="48900" data-year="2000" data-model="evo6">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/EVO_VI.png') }}" alt="EVO VI">
+            <span class="car-tag">Tommi Mäkinen</span>
+        </div>
+        <div class="car-details">
+            <h3>Mitsubishi Evo VI</h3>
+            <div class="car-specs">
+                <span class="spec">2000</span>
+                <span class="spec">73,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£48,900</div>
+            <div class="car-meta">
+                <span class="location">UK • Imported 2024</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="evo6">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== NISSAN COLLECTION =============== -->
+    <div class="car-card" data-make="nissan" data-price="35950" data-year="1994" data-model="r32">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/R32.png') }}" alt="R32">
+            <span class="car-tag">Fresh Import</span>
+        </div>
+        <div class="car-details">
+            <h3>Nissan Skyline R32 GT-R</h3>
+            <div class="car-specs">
+                <span class="spec">1994</span>
+                <span class="spec">89,000 km</span>
+                <span class="spec">2.6L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£35,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="r32">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="nissan" data-price="52950" data-year="2002" data-model="r33">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/R33.png') }}" alt="R33">
+            <span class="car-tag">V-Spec</span>
+        </div>
+        <div class="car-details">
+            <h3>Nissan Skyline R33 GT-R V-Spec</h3>
+            <div class="car-specs">
+                <span class="spec">2002</span>
+                <span class="spec">62,000 km</span>
+                <span class="spec">2.6L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£52,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="r33">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="nissan" data-price="22950" data-year="1996" data-model="silvia">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/S14.png') }}" alt="S14">
+            <span class="car-tag">Kouki</span>
+        </div>
+        <div class="car-details">
+            <h3>Nissan Silvia S14 Kouki</h3>
+            <div class="car-specs">
+                <span class="spec">1996</span>
+                <span class="spec">78,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£22,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="silvia">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="nissan" data-price="18450" data-year="1998" data-model="180sx">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/180sx.png') }}" alt="180sx">
+            <span class="car-tag">Type X</span>
+        </div>
+        <div class="car-details">
+            <h3>Nissan 180SX Type X</h3>
+            <div class="car-specs">
+                <span class="spec">1998</span>
+                <span class="spec">94,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£18,450</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="180sx">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== TOYOTA COLLECTION =============== -->
+    <div class="car-card" data-make="toyota" data-price="32950" data-year="1998" data-model="supra-na">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/MK4_NA.png') }}" alt="MK4_NA">
+            <span class="car-tag">Auto</span>
+        </div>
+        <div class="car-details">
+            <h3>Toyota Supra MK4 NA</h3>
+            <div class="car-specs">
+                <span class="spec">1998</span>
+                <span class="spec">56,000 km</span>
+                <span class="spec">3.0L NA</span>
+            </div>
+            <div class="car-price">£32,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="supra-na">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="toyota" data-price="18950" data-year="1993" data-model="mr2">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/MR2.png') }}" alt="MR2">
+            <span class="car-tag">Turbo</span>
+        </div>
+        <div class="car-details">
+            <h3>Toyota MR2 SW20 Turbo</h3>
+            <div class="car-specs">
+                <span class="spec">1993</span>
+                <span class="spec">71,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£18,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="mr2">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="toyota" data-price="15950" data-year="1995" data-model="soarer">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/soarer.jpg') }}" alt="Toyota Soarer" onerror="this.src='https://via.placeholder.com/400x250?text=SOARER'">
+            <span class="car-tag">2.5 TT</span>
+        </div>
+        <div class="car-details">
+            <h3>Toyota Soarer 2.5 TT</h3>
+            <div class="car-specs">
+                <span class="spec">1995</span>
+                <span class="spec">86,000 km</span>
+                <span class="spec">2.5L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£15,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="soarer">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="toyota" data-price="54950" data-year="1996" data-model="supra-rz">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/supra-rz.jpg') }}" alt="Toyota Supra RZ" onerror="this.src='https://via.placeholder.com/400x250?text=SUPRA+RZ'">
+            <span class="car-tag">6-Speed</span>
+        </div>
+        <div class="car-details">
+            <h3>Toyota Supra RZ 6-Speed</h3>
+            <div class="car-specs">
+                <span class="spec">1996</span>
+                <span class="spec">64,000 km</span>
+                <span class="spec">3.0L Twin-Turbo</span>
+            </div>
+            <div class="car-price">£54,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="supra-rz">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== HONDA COLLECTION =============== -->
+    <div class="car-card" data-make="honda" data-price="21950" data-year="1999" data-model="integra">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/integra-type-r.jpg') }}" alt="Honda Integra Type R DC2" onerror="this.src='https://via.placeholder.com/400x250?text=INTEGRA+DC2'">
+            <span class="car-tag">JDM</span>
+        </div>
+        <div class="car-details">
+            <h3>Honda Integra Type R DC2</h3>
+            <div class="car-specs">
+                <span class="spec">1999</span>
+                <span class="spec">59,000 km</span>
+                <span class="spec">1.8L VTEC</span>
+            </div>
+            <div class="car-price">£21,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="integra">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="honda" data-price="28950" data-year="2001" data-model="s2000">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/s2000-ap1.jpg') }}" alt="Honda S2000 AP1" onerror="this.src='https://via.placeholder.com/400x250?text=S2000+AP1'">
+            <span class="car-tag">AP1</span>
+        </div>
+        <div class="car-details">
+            <h3>Honda S2000 AP1</h3>
+            <div class="car-specs">
+                <span class="spec">2001</span>
+                <span class="spec">48,000 km</span>
+                <span class="spec">2.0L VTEC</span>
+            </div>
+            <div class="car-price">£28,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="s2000">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="honda" data-price="15950" data-year="1992" data-model="civic-eg">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/civic-eg6.jpg') }}" alt="Honda Civic EG6" onerror="this.src='https://via.placeholder.com/400x250?text=CIVIC+EG6'">
+            <span class="car-tag">SiR</span>
+        </div>
+        <div class="car-details">
+            <h3>Honda Civic EG6 SiR</h3>
+            <div class="car-specs">
+                <span class="spec">1992</span>
+                <span class="spec">95,000 km</span>
+                <span class="spec">1.6L VTEC</span>
+            </div>
+            <div class="car-price">£15,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="civic">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== MAZDA COLLECTION =============== -->
+    <div class="car-card" data-make="mazda" data-price="12950" data-year="1995" data-model="mx5">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/mx5-na.jpg') }}" alt="Mazda MX-5 NA" onerror="this.src='https://via.placeholder.com/400x250?text=MX-5+NA'">
+            <span class="car-tag">Eunos</span>
+        </div>
+        <div class="car-details">
+            <h3>Mazda MX-5 NA Eunos</h3>
+            <div class="car-specs">
+                <span class="spec">1995</span>
+                <span class="spec">68,000 km</span>
+                <span class="spec">1.6L</span>
+            </div>
+            <div class="car-price">£12,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="mx5">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mazda" data-price="35950" data-year="1991" data-model="cosmo">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/cosmo.jpg') }}" alt="Mazda Cosmo" onerror="this.src='https://via.placeholder.com/400x250?text=COSMO'">
+            <span class="car-tag">20B Triple Rotor</span>
+        </div>
+        <div class="car-details">
+            <h3>Mazda Cosmo 20B</h3>
+            <div class="car-specs">
+                <span class="spec">1991</span>
+                <span class="spec">54,000 km</span>
+                <span class="spec">2.0L Triple Rotor</span>
+            </div>
+            <div class="car-price">£35,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="cosmo">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mazda" data-price="24950" data-year="2002" data-model="rx7-spirit">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/rx7-spirit-r.jpg') }}" alt="Mazda RX-7 Spirit R" onerror="this.src='https://via.placeholder.com/400x250?text=SPIRIT+R'">
+            <span class="car-tag">Spirit R</span>
+        </div>
+        <div class="car-details">
+            <h3>Mazda RX-7 Spirit R</h3>
+            <div class="car-specs">
+                <span class="spec">2002</span>
+                <span class="spec">52,000 km</span>
+                <span class="spec">1.3L Twin-Rotor</span>
+            </div>
+            <div class="car-price">£74,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="spirit">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== SUBARU COLLECTION =============== -->
+    <div class="car-card" data-make="subaru" data-price="15950" data-year="1996" data-model="gc8">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/impreza-gc8.jpg') }}" alt="Subaru Impreza GC8" onerror="this.src='https://via.placeholder.com/400x250?text=GC8'">
+            <span class="car-tag">Type R</span>
+        </div>
+        <div class="car-details">
+            <h3>Subaru Impreza GC8 Type R</h3>
+            <div class="car-specs">
+                <span class="spec">1996</span>
+                <span class="spec">87,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£15,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="gc8">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="subaru" data-price="28950" data-year="2004" data-model="blobeye">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/blobeye-sti.jpg') }}" alt="Subaru Impreza Blobeye STI" onerror="this.src='https://via.placeholder.com/400x250?text=BLOBEYE'">
+            <span class="car-tag">STI</span>
+        </div>
+        <div class="car-details">
+            <h3>Subaru Impreza Blobeye STI</h3>
+            <div class="car-specs">
+                <span class="spec">2004</span>
+                <span class="spec">63,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£28,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="blobeye">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== MITSUBISHI COLLECTION =============== -->
+    <div class="car-card" data-make="mitsubishi" data-price="22950" data-year="1998" data-model="evo5">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/evo5.jpg') }}" alt="Mitsubishi Evo V" onerror="this.src='https://via.placeholder.com/400x250?text=EVO+V'">
+            <span class="car-tag">GSR</span>
+        </div>
+        <div class="car-details">
+            <h3>Mitsubishi Evo V GSR</h3>
+            <div class="car-specs">
+                <span class="spec">1998</span>
+                <span class="spec">76,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£22,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="evo5">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mitsubishi" data-price="41950" data-year="2006" data-model="evo9">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/evo9.jpg') }}" alt="Mitsubishi Evo IX" onerror="this.src='https://via.placeholder.com/400x250?text=EVO+IX'">
+            <span class="car-tag">MR</span>
+        </div>
+        <div class="car-details">
+            <h3>Mitsubishi Evo IX MR</h3>
+            <div class="car-specs">
+                <span class="spec">2006</span>
+                <span class="spec">58,000 km</span>
+                <span class="spec">2.0L Turbo</span>
+            </div>
+            <div class="car-price">£41,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="evo9">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mitsubishi" data-price="18950" data-year="1997" data-model="fto">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/fto-gpx.jpg') }}" alt="Mitsubishi FTO GPX" onerror="this.src='https://via.placeholder.com/400x250?text=FTO+GPX'">
+            <span class="car-tag">MIVEC</span>
+        </div>
+        <div class="car-details">
+            <h3>Mitsubishi FTO GPX</h3>
+            <div class="car-specs">
+                <span class="spec">1997</span>
+                <span class="spec">72,000 km</span>
+                <span class="spec">2.0L V6</span>
+            </div>
+            <div class="car-price">£18,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="fto">View Details</button>
+        </div>
+    </div>
+
+    <!-- =============== NICHE / KEI CARS =============== -->
+    <div class="car-card" data-make="suzuki" data-price="4950" data-year="1994" data-model="cappuccino">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/cappuccino.jpg') }}" alt="Suzuki Cappuccino" onerror="this.src='https://via.placeholder.com/400x250?text=CAPPUCCINO'">
+            <span class="car-tag">Kei Car</span>
+        </div>
+        <div class="car-details">
+            <h3>Suzuki Cappuccino</h3>
+            <div class="car-specs">
+                <span class="spec">1994</span>
+                <span class="spec">54,000 km</span>
+                <span class="spec">0.7L Turbo</span>
+            </div>
+            <div class="car-price">£4,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="cappuccino">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="honda" data-price="3950" data-year="1993" data-model="beat">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/honda-beat.jpg') }}" alt="Honda Beat" onerror="this.src='https://via.placeholder.com/400x250?text=HONDA+BEAT'">
+            <span class="car-tag">Kei Car</span>
+        </div>
+        <div class="car-details">
+            <h3>Honda Beat</h3>
+            <div class="car-specs">
+                <span class="spec">1993</span>
+                <span class="spec">62,000 km</span>
+                <span class="spec">0.7L</span>
+            </div>
+            <div class="car-price">£3,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="beat">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="mazda" data-price="6950" data-year="1992" data-model="autozam">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/autozam-az1.jpg') }}" alt="Mazda Autozam AZ-1" onerror="this.src='https://via.placeholder.com/400x250?text=AZ-1'">
+            <span class="car-tag">Gullwing</span>
+        </div>
+        <div class="car-details">
+            <h3>Mazda Autozam AZ-1</h3>
+            <div class="car-specs">
+                <span class="spec">1992</span>
+                <span class="spec">48,000 km</span>
+                <span class="spec">0.7L Turbo</span>
+            </div>
+            <div class="car-price">£6,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="az1">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="subaru" data-price="8950" data-year="1997" data-model="vivio">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/vivio-rxr.jpg') }}" alt="Subaru Vivio RX-R" onerror="this.src='https://via.placeholder.com/400x250?text=VIVIO+RXR'">
+            <span class="car-tag">Supercharger</span>
+        </div>
+        <div class="car-details">
+            <h3>Subaru Vivio RX-R</h3>
+            <div class="car-specs">
+                <span class="spec">1997</span>
+                <span class="spec">59,000 km</span>
+                <span class="spec">0.7L Supercharged</span>
+            </div>
+            <div class="car-price">£8,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="vivio">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="daihatsu" data-price="7950" data-year="1996" data-model="mira">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/mira-turbo.jpg') }}" alt="Daihatsu Mira Turbo" onerror="this.src='https://via.placeholder.com/400x250?text=MIRA+TURBO'">
+            <span class="car-tag">Turbo</span>
+        </div>
+        <div class="car-details">
+            <h3>Daihatsu Mira Turbo</h3>
+            <div class="car-specs">
+                <span class="spec">1996</span>
+                <span class="spec">51,000 km</span>
+                <span class="spec">0.7L Turbo</span>
+            </div>
+            <div class="car-price">£7,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="mira">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="isuzu" data-price="11950" data-year="1994" data-model="vehicross">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/vehicross.jpg') }}" alt="Isuzu VehiCROSS" onerror="this.src='https://via.placeholder.com/400x250?text=VEHICROSS'">
+            <span class="car-tag">Rare</span>
+        </div>
+        <div class="car-details">
+            <h3>Isuzu VehiCROSS</h3>
+            <div class="car-specs">
+                <span class="spec">1994</span>
+                <span class="spec">67,000 km</span>
+                <span class="spec">3.2L V6</span>
+            </div>
+            <div class="car-price">£11,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 3.5</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="vehicross">View Details</button>
+        </div>
+    </div>
+
+    <div class="car-card" data-make="lexus" data-price="23950" data-year="2001" data-model="is200">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='images/is200.jpg') }}" alt="Lexus IS200" onerror="this.src='https://via.placeholder.com/400x250?text=IS200'">
+            <span class="car-tag">Altezza</span>
+        </div>
+        <div class="car-details">
+            <h3>Lexus IS200 / Toyota Altezza</h3>
+            <div class="car-specs">
+                <span class="spec">2001</span>
+                <span class="spec">71,000 km</span>
+                <span class="spec">2.0L</span>
+            </div>
+            <div class="car-price">£23,950</div>
+            <div class="car-meta">
+                <span class="location">Japan • Grade 4.0</span>
+                <span class="status available">Available</span>
+            </div>
+            <button class="enquire-btn view-details" data-car="altezza">View Details</button>
+        </div>
+    </div>
+</section>
+
+<!-- =============== CAR DETAIL POPUP MODAL =============== -->
+<div id="carModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <div class="modal-grid">
+            <!-- Left Column - Image Gallery -->
+            <div class="modal-gallery">
+                <div class="main-image">
+                    <img id="modalMainImage" src="" alt="Car">
+                </div>
+                <div class="thumbnail-grid" id="thumbnailGrid">
+                    <!-- Thumbnails will be populated by JS -->
+                </div>
+            </div>
+
+            <!-- Right Column - Car Details -->
+            <div class="modal-info">
+                <h2 id="modalTitle">Nissan Skyline R34 GT-R</h2>
+
+                <div class="modal-specs">
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Year:</span>
+                        <span id="modalYear">1999</span>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Mileage:</span>
+                        <span id="modalMileage">49,000 km</span>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Engine:</span>
+                        <span id="modalEngine">2.6L Twin-Turbo</span>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Transmission:</span>
+                        <span id="modalTrans">6-Speed Manual</span>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Drivetrain:</span>
+                        <span id="modalDrive">4WD</span>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span class="spec-label">Colour:</span>
+                        <span id="modalColour">Bayside Blue</span>
+                    </div>
+                </div>
+
+                <div class="modal-price" id="modalPrice">£89,950</div>
+
+                <div class="modal-description">
+                    <h4>Vehicle Description</h4>
+                    <p id="modalDescription">Fresh import from Japan. Grade 4.5 auction grade with full service history. Genuine mileage, no rust, completely stock. Comes with original books, tools, and spare wheel. UK registration included.</p>
+                </div>
+
+                <div class="modal-features">
+                    <h4>Features</h4>
+                    <ul id="modalFeatures">
+                        <li>✅ Grade 4.5 Auction Sheet</li>
+                        <li>✅ Genuine 49,000km</li>
+                        <li>✅ Completely Stock</li>
+                        <li>✅ Service History</li>
+                        <li>✅ UK Registered</li>
+                    </ul>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="{{ url_for('contact') }}" class="modal-enquire">Enquire About This Car</a>
+                    <button class="modal-close-btn">Continue Browsing</button>
+                </div>
+
+                <div class="modal-stock-id">
+                    <span>Stock #: <span id="modalStockId">TT-2025-034</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Filtering and Modal -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // =============== FILTERING SYSTEM ===============
+    const searchInput = document.getElementById('searchInput');
+    const makeFilter = document.getElementById('makeFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const yearFilter = document.getElementById('yearFilter');
+    const sortFilter = document.getElementById('sortFilter');
+    const resetBtn = document.getElementById('resetFilters');
+    const carCards = document.querySelectorAll('.car-card');
+    const carCountSpan = document.getElementById('carCount');
+
+    function filterCars() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const makeValue = makeFilter.value;
+        const priceValue = priceFilter.value;
+        const yearValue = yearFilter.value;
+        const sortValue = sortFilter.value;
+
+        let visibleCount = 0;
+        let visibleCards = [];
+
+        carCards.forEach(card => {
+            const make = card.dataset.make;
+            const price = parseInt(card.dataset.price);
+            const year = parseInt(card.dataset.year);
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const specs = card.querySelector('.car-specs').textContent.toLowerCase();
+
+            let show = true;
+
+            // Search filter
+            if (searchTerm && !title.includes(searchTerm) && !specs.includes(searchTerm)) {
+                show = false;
+            }
+
+            // Make filter
+            if (makeValue !== 'all' && make !== makeValue) {
+                show = false;
+            }
+
+            // Price filter
+            if (priceValue !== 'all') {
+                if (priceValue === '0-20000' && (price < 0 || price > 20000)) show = false;
+                if (priceValue === '20000-40000' && (price < 20000 || price > 40000)) show = false;
+                if (priceValue === '40000-60000' && (price < 40000 || price > 60000)) show = false;
+                if (priceValue === '60000-80000' && (price < 60000 || price > 80000)) show = false;
+                if (priceValue === '80000-100000' && (price < 80000 || price > 100000)) show = false;
+                if (priceValue === '100000+' && price < 100000) show = false;
+            }
+
+            // Year filter
+            if (yearValue !== 'all') {
+                if (yearValue === '1990-1995' && (year < 1990 || year > 1995)) show = false;
+                if (yearValue === '1996-2000' && (year < 1996 || year > 2000)) show = false;
+                if (yearValue === '2001-2005' && (year < 2001 || year > 2005)) show = false;
+                if (yearValue === '2006-2010' && (year < 2006 || year > 2010)) show = false;
+                if (yearValue === '2011-2015' && (year < 2011 || year > 2015)) show = false;
+                if (yearValue === '2016-2025' && (year < 2016 || year > 2025)) show = false;
+            }
+
+            if (show) {
+                card.style.display = 'flex';
+                visibleCount++;
+                visibleCards.push(card);
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Sorting
+        if (sortValue !== 'latest') {
+            const grid = document.getElementById('stockGrid');
+            const cardsArray = Array.from(visibleCards);
+
+            cardsArray.sort((a, b) => {
+                const priceA = parseInt(a.dataset.price);
+                const priceB = parseInt(b.dataset.price);
+                const yearA = parseInt(a.dataset.year);
+                const yearB = parseInt(b.dataset.year);
+
+                if (sortValue === 'price-low') return priceA - priceB;
+                if (sortValue === 'price-high') return priceB - priceA;
+                if (sortValue === 'year-new') return yearB - yearA;
+                if (sortValue === 'year-old') return yearA - yearB;
+            });
+
+            cardsArray.forEach(card => grid.appendChild(card));
+        }
+
+        carCountSpan.textContent = visibleCount;
+    }
+
+    // Event listeners for filters
+    searchInput.addEventListener('keyup', filterCars);
+    makeFilter.addEventListener('change', filterCars);
+    priceFilter.addEventListener('change', filterCars);
+    yearFilter.addEventListener('change', filterCars);
+    sortFilter.addEventListener('change', filterCars);
+
+    // Reset filters
+    resetBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        makeFilter.value = 'all';
+        priceFilter.value = 'all';
+        yearFilter.value = 'all';
+        sortFilter.value = 'latest';
+        filterCars();
+    });
+
+    // =============== MODAL / POPUP SYSTEM ===============
+    const modal = document.getElementById('carModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalYear = document.getElementById('modalYear');
+    const modalMileage = document.getElementById('modalMileage');
+    const modalEngine = document.getElementById('modalEngine');
+    const modalTrans = document.getElementById('modalTrans');
+    const modalDrive = document.getElementById('modalDrive');
+    const modalColour = document.getElementById('modalColour');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalFeatures = document.getElementById('modalFeatures');
+    const modalMainImage = document.getElementById('modalMainImage');
+    const modalStockId = document.getElementById('modalStockId');
+    const thumbnailGrid = document.getElementById('thumbnailGrid');
+
+    // Car database for modal content
+    const carDatabase = {
+        'r34': {
+            title: 'Nissan Skyline R34 GT-R',
+            year: '1999',
+            mileage: '49,000 km',
+            engine: '2.6L RB26DETT Twin-Turbo',
+            trans: '6-Speed Manual',
+            drive: 'ATTESA 4WD',
+            colour: 'Bayside Blue',
+            price: '£89,950',
+            description: 'Fresh import from Japan. Grade 4.5 auction grade with full service history. Genuine mileage, no rust, completely stock. Comes with original books, tools, and spare wheel. UK registration included.',
+            features: [
+                '✅ Grade 4.5 Auction Sheet',
+                '✅ Genuine 49,000km',
+                '✅ Completely Stock',
+                '✅ Full Service History',
+                '✅ Original Books & Tools',
+                '✅ UK Registered',
+                '✅ 12 Months MOT'
+            ],
+            stockId: 'TT-2025-034',
+            images: [
+                'R34.png',
+                'R34_1.png',
+                'R34_2.png',
+                'R34_3.png'
+            ]
+        },
+        'rx7': {
+            title: 'Mazda RX-7 FD3S',
+            year: '1996',
+            mileage: '68,000 km',
+            engine: '1.3L 13B-REW Twin-Rotor',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'Competition Yellow Mica',
+            price: '£42,500',
+            description: 'UK imported 2025. Grade 4.0 auction grade. Recently serviced with new spark plugs, oil, and filters. No rebuild history but compression tested good. Clean underside, no rust.',
+            features: [
+                '✅ Grade 4.0 Auction Sheet',
+                '✅ 68,000km Genuine',
+                '✅ Compression Tested',
+                '✅ Recent Service',
+                '✅ UK Registered',
+                '✅ Import Duty Paid'
+            ],
+            stockId: 'TT-2025-018',
+            images: [
+                'RX7.png',
+                'RX7_1.png',
+                'RX7_2.png',
+                'RX7_3.png',
+            ]
+        },
+        'nsx': {
+            title: 'Honda NSX',
+            year: '1992',
+            mileage: '55,000 km',
+            engine: '3.0L C30A V6',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'Formula Red',
+            price: '£67,800',
+            description: 'Fresh import from Japan. Grade 4.0 auction grade. Pop-up headlights, original interior, no accidents. Service history from Honda Japan. One of the cleanest examples available.',
+            features: [
+                '✅ Grade 4.0 Auction Sheet',
+                '✅ 55,000km Genuine',
+                '✅ Original Paint',
+                '✅ Full Service History',
+                '✅ Pop-up Headlights',
+                '✅ UK Registration Included'
+            ],
+            stockId: 'TT-2025-041',
+            images: [
+                'NSX.png',
+                'NSX_1.png',
+                'NSX_2.png',
+                'NSX_3.png',
+            ]
+        },
+        '22b': {
+            title: 'Subaru Impreza 22B STI',
+            year: '1998',
+            mileage: '38,000 km',
+            engine: '2.2L EJ22 Turbo',
+            trans: '5-Speed Manual',
+            drive: 'AWD',
+            colour: 'Sonic Blue Mica',
+            price: '£245,000',
+            description: 'Number 278 of only 400 ever produced. Grade 4.0 auction grade. Completely original, never modified, full service history. Includes all original documentation, numbered plaque, and rare 22B accessories.',
+            features: [
+                '✅ No. 278/400',
+                '✅ 38,000km Genuine',
+                '✅ Completely Original',
+                '✅ Full Service History',
+                '✅ Original Documentation',
+                '✅ Collector Grade'
+            ],
+            stockId: 'TT-2024-112',
+            images: [
+                '22b-1.jpg',
+                '22b-2.jpg',
+                '22b-3.jpg',
+                '22b-4.jpg'
+            ]
+        },
+        'evo6': {
+            title: 'Mitsubishi Evo VI',
+            year: '2000',
+            mileage: '73,000 km',
+            engine: '2.0L 4G63 Turbo',
+            trans: '5-Speed Manual',
+            drive: 'AWD',
+            colour: 'Scotia White',
+            price: '£48,900',
+            description: 'Tommi Mäkinen Edition. UK imported 2024. Grade 3.5 auction grade. Recent cambelt service, new clutch, fresh MOT. Genuine Tommi Mäkinen wheels and Recaro seats.',
+            features: [
+                '✅ Tommi Mäkinen Edition',
+                '✅ 73,000km Genuine',
+                '✅ Recent Cambelt',
+                '✅ New Clutch',
+                '✅ UK Registered',
+                '✅ 12 Months MOT'
+            ],
+            stockId: 'TT-2024-098',
+            images: [
+                'evo6-1.jpg',
+                'evo6-2.jpg',
+                'evo6-3.jpg'
+            ]
+        },
+        'r32': {
+            title: 'Nissan Skyline R32 GT-R',
+            year: '1994',
+            mileage: '89,000 km',
+            engine: '2.6L RB26DETT Twin-Turbo',
+            trans: '5-Speed Manual',
+            drive: 'ATTESA 4WD',
+            colour: 'Gunmetal Grey',
+            price: '£35,950',
+            description: 'Grade 3.5 auction grade. Good condition throughout, minor cosmetic imperfections. Fresh import, UK registration included. Solid chassis, no major rust.',
+            features: [
+                '✅ Grade 3.5 Auction Sheet',
+                '✅ 89,000km',
+                '✅ Fresh Import',
+                '✅ UK Registration Included',
+                '✅ Solid Chassis'
+            ],
+            stockId: 'TT-2025-052',
+            images: [
+                'r32-1.jpg',
+                'r32-2.jpg',
+                'r32-3.jpg'
+            ]
+        },
+        'silvia': {
+            title: 'Nissan Silvia S14 Kouki',
+            year: '1996',
+            mileage: '78,000 km',
+            engine: '2.0L SR20DET Turbo',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'Sparkling Silver',
+            price: '£22,950',
+            description: 'Kouki model with factory aero. Grade 4.0 auction grade. Clean interior, minimal modifications, fresh import. One of the cleanest S14s available.',
+            features: [
+                '✅ Grade 4.0 Auction Sheet',
+                '✅ Kouki Model',
+                '✅ 78,000km',
+                '✅ Factory Aero',
+                '✅ Fresh Import'
+            ],
+            stockId: 'TT-2025-029',
+            images: [
+                'silvia-1.jpg',
+                'silvia-2.jpg',
+                'silvia-3.jpg'
+            ]
+        },
+        'cappuccino': {
+            title: 'Suzuki Cappuccino',
+            year: '1994',
+            mileage: '54,000 km',
+            engine: '0.7L F6A Turbo',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'British Green',
+            price: '£4,950',
+            description: 'Kei car classic. Grade 3.5 auction grade. Targa top, fully serviceable hardtop included. Economical import, perfect first JDM car.',
+            features: [
+                '✅ Grade 3.5 Auction Sheet',
+                '✅ 54,000km',
+                '✅ Targa Top',
+                '✅ Hardtop Included',
+                '✅ Economical Import'
+            ],
+            stockId: 'TT-2025-008',
+            images: [
+                'cappuccino-1.jpg',
+                'cappuccino-2.jpg',
+                'cappuccino-3.jpg'
+            ]
+        },
+        'beat': {
+            title: 'Honda Beat',
+            year: '1993',
+            mileage: '62,000 km',
+            engine: '0.7L E07A',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'Vivid Blue',
+            price: '£3,950',
+            description: 'Akira Watanabe designed Kei roadster. Grade 3.5 auction grade. Fresh import, UK registration included. Economical, reliable, and incredibly fun.',
+            features: [
+                '✅ Grade 3.5 Auction Sheet',
+                '✅ 62,000km',
+                '✅ Convertible',
+                '✅ Fresh Import',
+                '✅ UK Registration Included'
+            ],
+            stockId: 'TT-2025-011',
+            images: [
+                'beat-1.jpg',
+                'beat-2.jpg',
+                'beat-3.jpg'
+            ]
+        },
+        'az1': {
+            title: 'Mazda Autozam AZ-1',
+            year: '1992',
+            mileage: '48,000 km',
+            engine: '0.7L F6A Turbo',
+            trans: '5-Speed Manual',
+            drive: 'RWD',
+            colour: 'Silver',
+            price: '£6,950',
+            description: 'Gullwing doors! Grade 4.0 auction grade. Rare Kei sports car with futuristic design. All original, no modifications, fresh import.',
+            features: [
+                '✅ Grade 4.0 Auction Sheet',
+                '✅ 48,000km',
+                '✅ Gullwing Doors',
+                '✅ All Original',
+                '✅ Fresh Import'
+            ],
+            stockId: 'TT-2025-015',
+            images: [
+                'az1-1.jpg',
+                'az1-2.jpg',
+                'az1-3.jpg',
+                'az1-4.jpg'
+            ]
+        }
+    };
+
+    // Add click event to all view details buttons
+    document.querySelectorAll('.view-details').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const carId = this.dataset.car;
+            const carData = carDatabase[carId];
+
+            if (carData) {
+                // Populate modal with car data
+                modalTitle.textContent = carData.title;
+                modalPrice.textContent = carData.price;
+                modalYear.textContent = carData.year;
+                modalMileage.textContent = carData.mileage;
+                modalEngine.textContent = carData.engine;
+                modalTrans.textContent = carData.trans;
+                modalDrive.textContent = carData.drive;
+                modalColour.textContent = carData.colour;
+                modalDescription.textContent = carData.description;
+                modalStockId.textContent = carData.stockId;
+
+                // Clear and populate features
+                modalFeatures.innerHTML = '';
+                carData.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    modalFeatures.appendChild(li);
+                });
+
+                // Set main image
+                modalMainImage.src = `{{ url_for('static', filename='images/') }}${carData.images[0]}`;
+                modalMainImage.onerror = function() {
+                    this.src = 'https://via.placeholder.com/600x400?text=' + carData.title.replace(/ /g, '+');
+                };
+
+                // Clear and populate thumbnails
+                thumbnailGrid.innerHTML = '';
+                carData.images.forEach((image, index) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'thumbnail';
+                    if (index === 0) thumb.classList.add('active');
+
+                    const img = document.createElement('img');
+                    img.src = `{{ url_for('static', filename='images/') }}${image}`;
+                    img.onerror = function() {
+                        this.src = 'https://via.placeholder.com/100x80?text=' + index;
+                    };
+
+                    thumb.appendChild(img);
+                    thumb.addEventListener('click', function() {
+                        modalMainImage.src = this.querySelector('img').src;
+                        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+
+                    thumbnailGrid.appendChild(thumb);
+                });
+
+                // Show modal
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close modal functionality
+    const closeModal = document.querySelector('.close-modal');
+    const modalCloseBtn = document.querySelector('.modal-close-btn');
+
+    function closeModalFunc() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    closeModal.addEventListener('click', closeModalFunc);
+    modalCloseBtn.addEventListener('click', closeModalFunc);
+
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModalFunc();
+        }
+    });
+
+    // Initial filter
+    filterCars();
+});
+</script>
+{% endblock %}
