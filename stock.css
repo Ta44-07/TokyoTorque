@@ -1,0 +1,663 @@
+/* --------------------------------
+   STOCK PAGE SPECIFIC STYLES
+   TokyoTorque Imports - JDM Theme
+-------------------------------- */
+
+.stock-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stock-header h2 {
+    font-size: 2.2rem;
+    color: #000000;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.stock-subtitle {
+    color: #666666;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* ---------- Search & Filter Controls ---------- */
+.stock-controls {
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    padding: 0 30px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #ff0000;
+    background: white;
+    box-shadow: 0 0 0 2px rgba(255,0,0,0.05);
+}
+
+.search-btn {
+    padding: 12px 20px;
+    background: #ff0000;
+    color: white;
+    border: 1px solid #ff0000;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: #cc0000;
+}
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    flex: 1 1 auto;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: #ff0000;
+    outline: none;
+}
+
+.stock-count-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-count {
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid #999;
+    color: #666;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+    color: white;
+}
+
+/* ---------- Grid Layout ---------- */
+.stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 30px;
+}
+
+/* ---------- Car Card ---------- */
+.car-card {
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 0, 0, 0.1);
+    border-color: #ff0000;
+}
+
+/* ---------- Car Image ---------- */
+.car-image {
+    position: relative;
+    height: 220px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #ff0000;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Car Tag */
+.car-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff0000;
+    color: #ffffff;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    z-index: 2;
+}
+
+.car-tag.featured {
+    background: #000000;
+    border-left: 4px solid #ff0000;
+}
+
+.car-tag.sold {
+    background: #333333;
+}
+
+/* ---------- Car Details ---------- */
+.car-details {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #000000;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 8px;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* Specs row */
+.car-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.spec {
+    position: relative;
+    padding-left: 0;
+}
+
+.spec:not(:last-child)::after {
+    content: "•";
+    margin-left: 15px;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* Price */
+.car-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.car-price::before {
+    content: "£";
+    font-size: 1rem;
+    position: relative;
+    top: -5px;
+    margin-right: 2px;
+    color: #ff0000;
+}
+
+/* Meta info */
+.car-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 0.85rem;
+    color: #777777;
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+}
+
+.location::before {
+    content: "📍";
+    margin-right: 5px;
+}
+
+/* Status indicators */
+.status {
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.available {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status.sold {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Enquire button */
+.enquire-btn {
+    background: transparent;
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    width: 100%;
+}
+
+.enquire-btn:hover {
+    background: #ff0000;
+    color: #ffffff;
+}
+
+.enquire-btn:disabled {
+    border-color: #cccccc;
+    background: #f5f5f5;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+/* =============== MODAL/POPUP STYLES =============== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    max-width: 1200px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2.2rem;
+    color: #999;
+    cursor: pointer;
+    z-index: 100;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #ff0000;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+/* Gallery Section */
+.modal-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-image {
+    width: 100%;
+    height: 350px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.thumbnail {
+    height: 80px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+    border-color: #ff0000;
+}
+
+.thumbnail.active {
+    border-color: #ff0000;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info Section */
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-info h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #ff0000;
+    padding-bottom: 10px;
+}
+
+.modal-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.modal-spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.spec-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+}
+
+.modal-spec-item span:last-child {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.modal-price {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ff0000;
+    margin: 10px 0;
+}
+
+.modal-price::before {
+    content: '£';
+    margin-right: 5px;
+}
+
+.modal-description h4,
+.modal-features h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #000;
+    border-left: 4px solid #ff0000;
+    padding-left: 12px;
+}
+
+.modal-description p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.modal-features ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.modal-features li {
+    color: #555;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-enquire {
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #ff0000;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex: 2;
+}
+
+.modal-enquire:hover {
+    background: transparent;
+    color: #ff0000;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: 2px solid #999;
+    color: #666;
+    padding: 14px 25px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.modal-close-btn:hover {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.modal-stock-id {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    color: #999;
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 992px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-gallery {
+        order: 2;
+    }
+
+    .modal-info {
+        order: 1;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .stock-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .stock-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .stock-controls {
+        padding: 0 20px;
+    }
+
+    .car-specs {
+        gap: 10px;
+    }
+
+    .spec:not(:last-child)::after {
+        margin-left: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-specs {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-features ul {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .car-image {
+        height: 180px;
+    }
+
+    .car-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .car-price {
+        font-size: 1.4rem;
+    }
+
+    .stock-count-wrapper {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .modal-info h2 {
+        font-size: 1.6rem;
+    }
+
+    .modal-price {
+        font-size: 1.8rem;
+    }
+
+    .thumbnail-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .thumbnail {
+        height: 60px;
+    }
+}

@@ -1,0 +1,384 @@
+/* --------------------------------
+   PROCESS PAGE SPECIFIC STYLES
+   TokyoTorque Imports - JDM Theme
+-------------------------------- */
+
+.process-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.process-header h2 {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.process-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* ---------- Timeline Steps ---------- */
+.process-timeline {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Vertical connector line */
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #ff0000;
+    transform: translateX(-50%);
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.step-number {
+    width: 80px;
+    height: 80px;
+    background: #000;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 40px;
+    position: relative;
+    z-index: 2;
+    border: 4px solid #ff0000;
+    box-shadow: 0 0 0 4px white;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 5px solid #ff0000;
+    transition: transform 0.3s ease;
+}
+
+.step-content:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(255,0,0,0.1);
+}
+
+.step-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #000;
+    font-weight: 700;
+}
+
+.step-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.step-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detail-badge {
+    background: #f5f5f5;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    color: #333;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+}
+
+.detail-badge:hover {
+    background: #ff0000;
+    color: white;
+    border-color: #ff0000;
+}
+
+/* ---------- Cost Table ---------- */
+.cost-section {
+    padding: 60px 30px;
+    background: #f9f9f9;
+    margin: 40px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #000;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #ff0000;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.cost-table-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cost-table th {
+    background: #000;
+    color: white;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cost-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.cost-table tr:last-child td {
+    border-bottom: none;
+}
+
+.cost-table tbody tr:hover {
+    background: #fff5f5;
+}
+
+.table-note {
+    background: #fff5f5;
+    color: #666 !important;
+    font-style: italic;
+    padding: 15px 20px;
+    border-top: 2px solid #ff0000;
+}
+
+/* ---------- FAQ Section ---------- */
+.faq-section {
+    padding: 60px 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.faq-item {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #ff0000;
+    box-shadow: 0 5px 15px rgba(255,0,0,0.05);
+}
+
+.faq-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #000;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.faq-item h4::before {
+    content: 'Q:';
+    color: #ff0000;
+    font-weight: 800;
+}
+
+.faq-item p {
+    color: #666;
+    line-height: 1.6;
+    padding-left: 25px;
+}
+
+/* ---------- Process CTA ---------- */
+.process-cta {
+    background: linear-gradient(135deg, #000, #1a1a1a);
+    padding: 60px 30px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.process-cta h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.process-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    border: 2px solid #ff0000;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: transparent;
+    color: white;
+    border-color: white;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 768px) {
+    .process-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .process-timeline::before {
+        left: 30px;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        margin-right: 25px;
+    }
+
+    .step-content {
+        padding: 20px;
+    }
+
+    .step-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cost-table {
+        font-size: 0.9rem;
+    }
+
+    .cost-table th,
+    .cost-table td {
+        padding: 12px 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .process-step {
+        flex-direction: column;
+    }
+
+    .process-timeline::before {
+        display: none;
+    }
+
+    .step-number {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .step-content {
+        border-left: none;
+        border-top: 5px solid #ff0000;
+    }
+
+    .step-content:hover {
+        transform: translateY(-5px);
+    }
+
+    .cost-table,
+    .cost-table thead,
+    .cost-table tbody,
+    .cost-table tr,
+    .cost-table td,
+    .cost-table th {
+        display: block;
+    }
+
+    .cost-table thead {
+        display: none;
+    }
+
+    .cost-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+
+    .cost-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .cost-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #000;
+    }
+}
